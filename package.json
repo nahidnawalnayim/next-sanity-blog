@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@sanity/client": "^3.3.0",
     "next": "12.1.5",
     "react": "18.1.0",
     "react-dom": "18.1.0"
@@ -16,5 +17,9 @@
   "devDependencies": {
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5"
-  }
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "author": "",
+  "license": "ISC"
 }
