@@ -1,10 +1,11 @@
 import Head from 'next/head'
-import Image from 'next/image'
+ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Banner from './banner'
 import Homes from './home'
+import {client} from './client'
 
-export default function Home() {
+export default function Home({bannerData,postData}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,8 +15,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-      <Homes />
-      <Banner />
+      <Homes mypost={postData.length && postData[0]}/>
+      <Banner heroBanner={bannerData.length && bannerData[0]}/>
       </main>
 
       <footer className={styles.footer}>
@@ -32,4 +33,17 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+export const getServerSideProps =async() => {
+  
+  const post = `*[_type == "post"]`;
+  const postData =await client.fetch(post);
+
+  const bannerQuery = `*[_type == "banner"]`;
+  const bannerData =await client.fetch(bannerQuery);
+
+  console.log(bannerData);
+  return {
+    props: {postData, bannerData }
+  }
 }
